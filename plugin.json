@@ -1,0 +1,10 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "swe-mentor",
+  "version": "0.2.0",
+  "description": "Socratic software engineering mentoring with structured hints, debugging, review, retrieval practice, and explicit production mode.",
+  "author": {
+    "name": "libsss01"
+  },
+  "repository": "https://github.com/libsss01/swe-mentor-kit"
+}

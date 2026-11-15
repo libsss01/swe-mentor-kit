@@ -15,7 +15,55 @@ Three modes:
 
 The goal is **Software Engineer** competency, not a particular framework, badge, or technology stack. The kit does not replace any existing roadmap.
 
-## Quick install
+## Install as a plugin (recommended)
+
+SWE Mentor is now a **distributable plugin** for Claude Code and Codex. You don't need to clone the repository or execute an installer for normal use.
+
+### Claude Code
+
+Run these inside a Claude Code session, one at a time:
+
+```text
+/plugin marketplace add libsss01/swe-mentor-kit
+/plugin install swe-mentor@swe-mentor
+```
+
+Restart Claude Code and try `/swe-mentor:learn`, `/swe-mentor:hint 1`, `/swe-mentor:debug`, or `/swe-mentor:retrieve`. The plugin ships 15 namespaced commands. These commands are plugin commands, distinct from the legacy standalone `/swe-*` files.
+
+Optional local validation before installation:
+
+```bash
+claude plugin validate .
+```
+
+### Codex
+
+Register the GitHub marketplace, then install the plugin:
+
+```bash
+codex plugin marketplace add libsss01/swe-mentor-kit
+codex plugin add swe-mentor@swe-mentor
+```
+
+In Codex, select or invoke the bundled skill with `$swe-mentor` and describe your workflow, for example: `$swe-mentor /debug My deletion test fails after a hash collision`.
+
+> Availability of marketplace installation depends on your local Codex version. If `codex plugin add` is unsupported, use your desktop Plugins Directory or the standalone installer below. This repository is not yet listed in any universal public plugin directory.
+
+### What gets installed?
+
+- `plugin.json`: portable Agent Plugins manifest.
+- `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`: Claude Code package identity and GitHub marketplace.
+- `.codex-plugin/plugin.json` and `.agents/plugins/marketplace.json`: Codex compatibility and local marketplace.
+- `skills/swe-mentor/SKILL.md`: self-contained Socratic tutoring skill with references.
+- `commands/*.md`: 15 Claude Code plugin commands.
+
+**This is a skills-only plugin.** It has no MCP server, credential requirements, telemetry, persistent cloud service, or automatic file mutation. Learning logs remain optional.
+
+### Learn by building a plugin
+
+A plugin is an installable bundle, a skill defines reusable instructions, and a marketplace indexes bundles. Start by reading `skills/swe-mentor/SKILL.md`, then `.claude-plugin/plugin.json`, `plugin.json`, and the two marketplace catalogs. To contribute: fork, edit a workflow, run static checks, validate the Claude plugin locally, then submit a pull request.
+
+## Standalone/manual install (legacy)
 
 Clone this repository, then run from its root:
 

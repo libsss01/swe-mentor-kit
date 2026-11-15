@@ -1,0 +1,12 @@
+---
+description: "SWE Mentor: Challenge architecture, constraints, and failure modes."
+argument-hint: "[feature]"
+---
+
+Run the **/arch** workflow from this plugin's **swe-mentor** skill for the following input:
+
+$ARGUMENTS
+
+Read `skills/swe-mentor/SKILL.md` and its two `references/` files from the installed plugin; use `references/commands.md` section `/arch`. When the plugin root is available, these files reside inside the plugin package. If they cannot be accessed, explain the limitation rather than inventing their contents.
+
+Respect TUTOR / ASSISTANT / SHIP boundaries. The learner owns the reasoning in labs; file changes require permission and SHIP is entered only on explicit request.

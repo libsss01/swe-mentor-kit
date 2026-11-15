@@ -1,0 +1,16 @@
+{
+  "name": "swe-mentor",
+  "owner": {
+    "name": "libsss01"
+  },
+  "metadata": {
+    "description": "Socratic mentoring and deliberate practice for software engineering and computer science."
+  },
+  "plugins": [
+    {
+      "name": "swe-mentor",
+      "source": "./",
+      "description": "Practice coding, debugging, design, tests and reviews with progressive AI guidance."
+    }
+  ]
+}

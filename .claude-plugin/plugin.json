@@ -1,0 +1,17 @@
+{
+  "name": "swe-mentor",
+  "version": "0.2.0",
+  "description": "Learn programming and software engineering without outsourcing your thinking. Socratic hints, reviews, debugging and evidence-based progress.",
+  "author": {
+    "name": "libsss01"
+  },
+  "repository": "https://github.com/libsss01/swe-mentor-kit",
+  "license": "MIT",
+  "keywords": [
+    "learning",
+    "software-engineering",
+    "socratic",
+    "education",
+    "debugging"
+  ]
+}
