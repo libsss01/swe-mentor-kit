@@ -1,8 +1,8 @@
-# SWE Mentor Kit — v0.1
+# SWE Mentor Kit — v0.2.0
 
 **Learn to reason, build, debug, test, review, and ship software with AI — without outsourcing the skill you want to develop.**
 
-A portable Socratic learning kit for **Claude Code**, **Codex**, and **ChatGPT**, inspired by [Manware's AI Learning Toolkit](https://github.com/i-am-manware/Manware-s-AI-Learning-Toolkit), adapted for the Software Engineering & Computer Science learning path.
+An installable, portable Socratic learning plugin for **Claude Code**, **Codex**, and **ChatGPT**, inspired by [Manware's AI Learning Toolkit](https://github.com/i-am-manware/Manware-s-AI-Learning-Toolkit), adapted for the Software Engineering & Computer Science learning path.
 
 ## Pedagogical protocol
 
