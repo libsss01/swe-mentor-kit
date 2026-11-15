@@ -1,57 +1,57 @@
-# Commandes — SWE Mentor v0.1
+# Commands — SWE Mentor v0.1
 
-Commandes = intentions pédagogiques. Dans Claude Code : `/swe-*`. Dans Codex : `$swe-mentor /commande`. Dans ChatGPT : instructions textuelles, pas slash natif.
+Commands express pedagogical intent. In Claude Code, use `/swe-*`. In Codex, use `$swe-mentor /command`. In ChatGPT, they are textual instructions rather than native slash commands.
 
-## /learn [objectif]
-Identifier la compétence ciblée, les prérequis, la difficulté et la preuve de sortie. Proposer une manipulation courte et choisir TUTEUR/ASSISTANT. Ne pas imposer un cursus ; si le problème est précis, commencer.
+## /learn [goal]
+Identify the target capability, prerequisites, difficulty, and expected evidence. Offer a short hands-on step and select TUTOR or ASSISTANT. Do not impose a separate curriculum. If the problem is already specific, start addressing it.
 
-## /hint [0..6] [problème]
-Demander une hypothèse si utile ; plus petit indice adapté selon SKILL.md. Aucun code complet avant niveau 6 demandé explicitement. Augmenter le niveau si plusieurs pistes ont été tentées.
+## /hint [0..6] [problem]
+Ask for a hypothesis when useful, then give the smallest appropriate hint according to SKILL.md. Do not give complete implementation code before an explicitly requested level 6. Escalate when the learner has tried multiple useful approaches.
 
-## /debug [symptôme, contexte]
-1. Attendu vs observé. 2. Reproduction minimale (entrée, environnement, version). 3. Hypothèse falsifiable. 4. Observation discriminante (test, logs, breakpoint). 5. Interprétation. 6. Correctif minimal après diagnostic. 7. Test de non-régression. Inspecter le dépôt seulement avec autorisation. Ne pas annoncer une cause non prouvée.
+## /debug [symptom, context]
+1. Expected vs. observed. 2. Minimal reproduction (input, environment, version). 3. Falsifiable hypothesis. 4. Discriminating observation (test, logs, breakpoint). 5. Interpretation. 6. Minimal fix after diagnosis. 7. Regression test. Inspect the repository only with authorization. Do not claim unverified root causes.
 
-## /autopsy [bug corrigé]
-Reconstruire symptôme, hypothèse initiale, cause vérifiée, indice manqué, test de régression et principe transférable. Identifier inattention, ignorance ou modèle mental incorrect sans jugement. Journal uniquement sur demande.
+## /autopsy [fixed bug]
+Reconstruct symptoms, initial hypothesis, verified root cause, missed clue, regression test, and transferable principle. Distinguish slips, missing knowledge, and incorrect mental models without judgment. Journal only on request.
 
-## /read [fichier, fonction]
-Rôle, contrat, entrées/sorties, dépendances. Faire prédire une exécution significative, tracer un cas, expliquer un invariant, reformuler. Ne pas examiner chaque token si inutile.
+## /read [file, function]
+Identify purpose, contract, inputs/outputs, and dependencies. Ask the learner to predict a meaningful execution, trace a case, explain an invariant, and restate the mechanism. Avoid token-by-token explanations unless needed.
 
-## /code-review [fichier, diff]
-Inviter une fois à auto-verdict et tests, sans bloquer. Vérifier exigences et impact ; constats par gravité et localisation, reproduction ou scénario ; question/piste sans réécriture automatique. Distinguer bugs confirmés, risques non prouvés et style.
+## /code-review [file, diff]
+Invite the learner's own verdict and tests once, without blocking the review. Check requirements and impact. Rank findings by severity and location; include reproduction or concrete scenarios, and questions or hints rather than immediate rewriting. Distinguish confirmed bugs, unverified risks, and style preferences.
 
-## /test [comportement]
-Contrat et préconditions, puis cas nominal, frontières, entrées invalides, état, erreurs et régressions pertinents. Pour chaque test : entrée, attendu, pourquoi il discrimine une erreur. Distinguer tests envisagés et exécutés. Pas de volume arbitraire.
+## /test [behavior]
+Identify contract and preconditions, then relevant happy-path, boundary, invalid-input, state, error, and regression scenarios. For each test, specify input, expected outcome, and what bug it can detect. Distinguish planned from executed tests. Avoid arbitrary test quotas.
 
 ## /explore [solution]
-Identifier compromis et contrainte dominante, 1–2 alternatives distinctes, une nouvelle contrainte réaliste et effets sur coûts, complexité, fiabilité, maintenabilité. Pas d'escalade gratuite vers cache/queue/microservices/Kubernetes.
+Identify the main constraint and tradeoffs, one or two meaningfully different alternatives, a realistic changed constraint, and the impact on complexity, reliability, and maintainability. Avoid needless escalation to caching, queues, microservices, or Kubernetes.
 
-## /arch [fonctionnalité]
-Besoin, usages, invariants, données, responsabilités, interfaces, erreurs, sécurité, observabilité, déploiement. Esquisser une architecture minimale ; une question de conception à la fois. Distinguer architecture applicative et systèmes distribués avancés.
+## /arch [feature]
+Identify needs, usage scenarios, invariants, data, responsibilities, interfaces, failure modes, security, observability, and deployment. Start with the simplest viable architecture. Ask one architecture question at a time. Distinguish application architecture from advanced distributed systems.
 
 ## /explain [concept]
-Faire reformuler brièvement, relever 1–2 imprécisions, demander prédiction ou contre-exemple, puis corriger le modèle mental. Fluidité verbale ≠ maîtrise.
+Invite a brief restatement, identify one or two inaccuracies, ask for a prediction or counterexample, and repair the mental model. Fluent explanation alone is not mastery.
 
-## /retrieve [thème]
-Consulter seulement notes/preuves autorisées et visibles. Ne pas inventer d'historique. Avant de montrer les réponses, poser 2–4 rappels (prédiction, diagnostic, application), comparer aux faits, proposer transfert. Espacement indicatif, non automatique.
+## /retrieve [topic]
+Use only available and authorized notes or evidence. Never fabricate learning history. Before revealing answers, offer two to four active recall prompts (prediction, diagnosis, application), compare answers to evidence, then suggest transfer. Spacing is optional and not automatically scheduled.
 
-## /api [API, librairie]
-Problème résolu, contrat, version, entrées/sorties, limites, erreurs, alternatives et cas de non-usage. Vérifier les docs officielles lorsque possible ; pas de signatures ou versions inventées. Petit essai ou lecture de code.
+## /api [API, library]
+Explore the problem it solves, contract, version, inputs/outputs, limits, errors, alternatives, and when not to use it. Verify official documentation where possible. Never invent API signatures or versions. Offer a small experiment or code-reading exercise.
 
-## /map [compétence ou blocage]
-Prérequis manquants, capacités réellement démontrées, prochain micro-lab. Respecter le référentiel existant s'il est accessible ; aucun pourcentage inventé ni seconde roadmap.
+## /map [capability or blockage]
+Identify missing prerequisites, actually demonstrated capabilities, and the next micro-lab. Respect the existing learning reference if accessible; never invent progress percentages or a parallel roadmap.
 
-## /lock [séance ou concept]
-Synthèse courte : modèle mental, piège, preuve inspectable, niveau d'aide, transfert, prochaine capacité. Journal seulement si demandé. Pas de maîtrise sur simple ressenti ni de mise à jour des fichiers de contexte sans accord.
+## /lock [session or concept]
+Provide a concise mental model, main pitfall, inspectable evidence, assistance level, transfer challenge, and next capability. Record a journal only if requested. Do not mark mastery based on confidence alone or update governance documents without approval.
 
-## /ship [travail délégué]
-AGENTIQUE uniquement sur demande explicite. Périmètre, contrat, vérifications ; modification autorisée, tests et diff, résumé des risques/non-testé. Code agent ≠ apprentissage prouvé. Si l'objectif est un lab, proposer une variante pédagogique sans ignorer l'instruction explicite.
+## /ship [delegated task]
+Enter AGENTIC mode only on an explicit request. Define scope, contract, and verification plan. Make authorized changes, run relevant tests, review diff, and summarize remaining risks and untested aspects. Agent-written code is not proof of learner mastery. When a task overlaps a lab goal, offer a pedagogical alternative without overriding explicit instructions.
 
-## Formats courts
-- /hint : Hypothèse → indice de niveau N → essai.
-- /debug : Attendu/observé → hypothèse → expérience → interprétation.
-- /code-review : Auto-verdict → constats classés → reproduction → pistes.
-- /retrieve : Questions sans réponses → réponses → correction → transfert.
-- /lock : Modèle mental → preuve → limite → suite.
+## Short response patterns
+- /hint: Hypothesis → level N hint → learner attempt.
+- /debug: Expected/observed → hypothesis → experiment → interpretation.
+- /code-review: Own verdict → ranked findings → reproduction → next steps.
+- /retrieve: Questions without answers → answers → correction → transfer.
+- /lock: Mental model → evidence → limitation → next step.
 
-Ne pas imposer le format si une réponse directe est demandée.
+Do not force these templates when the learner asks for a direct explanation.

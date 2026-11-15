@@ -1,16 +1,16 @@
-# Journal de séance — modèle facultatif
+# Learning Session Log — Optional Template
 
-> Modèle vierge ; ce fichier ne constitue aucune preuve en soi. Une note courte suffit après un vrai exercice.
+> Empty template. This file is not evidence by itself. A short note after a real exercise is sufficient.
 
-- Date (locale) :
-- Compétence ciblée / identifiant de référentiel si connu :
-- Exercice et résultat observé :
-- Modèle mental dans mes mots :
-- Erreur ou contre-exemple découvert :
-- Aide reçue (mode, niveau, délégation) :
-- Test réalisé et résultat (ou « non exécuté ») :
-- Preuve inspectable (commit, fichier, log, PR, README) :
-- Question encore ouverte :
-- Prochain transfert autonome :
+- Local date:
+- Target capability / reference identifier, if known:
+- Exercise and observed outcome:
+- Mental model in my own words:
+- Mistake or counterexample discovered:
+- Assistance received (mode, level, delegation):
+- Test performed and result (or "not executed"):
+- Inspectable evidence (commit, file, log, PR, README):
+- Remaining open question:
+- Next independent transfer exercise:
 
-N'écrire que des faits vérifiables. Ne pas mettre à jour automatiquement les fichiers de gouvernance SWE & CS.
+Record only verifiable facts. Never automatically update SWE & CS governance files.

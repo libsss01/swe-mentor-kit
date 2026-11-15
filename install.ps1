@@ -1,4 +1,4 @@
-# SWE Mentor Kit — installation non destructive (PowerShell 5+)
+# SWE Mentor Kit — non-destructive installer (PowerShell 5+)
 [CmdletBinding()]
 param(
   [ValidateSet('Project', 'User')]
@@ -12,13 +12,13 @@ else { $root = (Resolve-Path -LiteralPath $Target -ErrorAction Stop).Path }
 
 function Copy-Safely([string]$source, [string]$destination) {
   if (Test-Path -LiteralPath $destination) {
-    Write-Host "SKIP (existe déjà): $destination" -ForegroundColor Yellow
+    Write-Host "SKIP (already exists): $destination" -ForegroundColor Yellow
     return
   }
   $parent = Split-Path -Parent $destination
   if (-not (Test-Path -LiteralPath $parent)) { New-Item -ItemType Directory -Path $parent -Force | Out-Null }
   Copy-Item -LiteralPath $source -Destination $destination
-  Write-Host "INSTALLE: $destination" -ForegroundColor Green
+  Write-Host "INSTALLED: $destination" -ForegroundColor Green
 }
 $sourceCore = Join-Path $kit 'core'
 foreach ($sub in @('.claude/skills/swe-mentor', '.agents/skills/swe-mentor')) {
@@ -32,4 +32,4 @@ $commands = Join-Path $kit 'claude-commands'
 Get-ChildItem -LiteralPath $commands -Filter '*.md' -File | ForEach-Object {
   Copy-Safely $_.FullName (Join-Path $root (Join-Path '.claude/commands' $_.Name))
 }
-Write-Host "`nTerminé. Redémarre Claude Code et Codex si les skills n'apparaissent pas. Aucune configuration existante n'a été écrasée." -ForegroundColor Cyan
+Write-Host "`nInstallation complete. Restart Claude Code and Codex if the skills do not appear. Existing configuration was not overwritten." -ForegroundColor Cyan

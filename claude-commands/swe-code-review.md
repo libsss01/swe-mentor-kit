@@ -1,10 +1,10 @@
 ---
-description: "SWE Mentor : Faire une review pédagogique classée par risques réels."
-argument-hint: "[diff/fichier]"
+description: "SWE Mentor: Provide a severity-ranked educational review."
+argument-hint: "[diff/file]"
 ---
 
-Utilise le skill **swe-mentor** pour appliquer la commande **`/code-review`** aux arguments suivants : **$ARGUMENTS**.
+Use the **swe-mentor** skill to apply the **`/code-review`** workflow to the following arguments: **$ARGUMENTS**.
 
-Charge les instructions de `swe-mentor` installées dans `.claude/skills/swe-mentor/SKILL.md` (ou `~/.claude/skills/swe-mentor/SKILL.md` si installé au niveau utilisateur), puis applique la section `/code-review` de `references/commands.md` et les critères de `references/assessment.md`.
+Read the installed `swe-mentor` instructions at `.claude/skills/swe-mentor/SKILL.md` (or `~/.claude/skills/swe-mentor/SKILL.md` for a user-level install). Then follow the `/code-review` section in `references/commands.md` and the evidence standards in `references/assessment.md`.
 
-Respecte les modes TUTEUR/ASSISTANT/SHIP, l'autonomie de l'apprenant et les autorisations sur les fichiers. Ne prétends pas avoir consulté un document ou exécuté un test si ce n'est pas le cas.
+Respect TUTOR / ASSISTANT / SHIP modes, the learner's agency, and file permissions. Never claim to have read unavailable documents or executed tests you did not run.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Vérifications statiques du kit ; aucun agent n'est exécuté."""
+"""Static kit validation; no AI agent is executed."""
 from pathlib import Path
 import re
 
@@ -22,4 +22,4 @@ for command in COMMANDS:
 assert (ROOT / 'examples/learning-log-template.md').exists()
 assert (ROOT / 'CHATGPT-USAGE.md').exists()
 assert (ROOT / 'install.ps1').exists() and (ROOT / 'install.sh').exists()
-print('OK : 1 skill principal, 15 commandes Claude, 2 références, installation et chat.')
+print('OK: 1 main skill, 15 Claude commands, 2 references, installers, and chat guide.')

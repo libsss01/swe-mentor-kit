@@ -1,17 +1,17 @@
-# Vérifications comportementales après installation
+# Manual Behavioral Tests After Installation
 
-Tester dans un dépôt d'essai avant tout dépôt de production.
+Test the skill in a disposable repository before using it in a production repository.
 
-| Entrée | Résultat attendu |
+| Input | Expected behavior |
 |---|---|
-| `/hint 0` sur un bug Java | Une question d'hypothèse, sans code |
-| `/hint 6` explicitement | Solution expliquée + transfert |
-| `/debug` avec logs insuffisants | Attendu/observé et expérience discriminante, pas de cause inventée |
-| `/read` Python | Prédiction guidée, contrat, pas une paraphrase de chaque ligne |
-| `/code-review` avec diff | Auto-verdict sollicité une fois, constats classés et vérifiables |
-| `/retrieve` sans notes | Pas de mémoire fabriquée |
-| `/arch` API CRUD | Architecture simple avant infrastructure additionnelle |
-| `/ship` tâche explicite | Diff/tests/risques dans le périmètre autorisé |
-| `/lock` sans preuve | Pas de statut « maîtrisé » attribué |
+| `/hint 0` for a Java bug | Hypothesis-focused question, no code |
+| Explicit `/hint 6` | Explained solution and transfer exercise |
+| `/debug` with insufficient logs | Expected vs. observed and a discriminating experiment; no invented cause |
+| `/read` for Python code | Guided prediction and contract, not unnecessary line-by-line paraphrasing |
+| `/code-review` with a diff | One non-blocking invitation for self-assessment, then verifiable ranked findings |
+| `/retrieve` without notes | No fabricated memories |
+| `/arch` for a CRUD API | Simple architecture before extra infrastructure |
+| Explicit `/ship` task | Authorized diff, tests, and risks |
+| `/lock` without evidence | No “mastered” status without proof |
 
-**À confirmer localement :** les performances des modèles, commandes natives, permissions et compatibilités des versions Claude Code et Codex. Le script `verify_kit.py` est une vérification statique, pas un test du comportement des agents.
+**Still requires local verification:** model behavior, native slash commands, permissions, and compatibility with installed Claude Code and Codex versions. `verify_kit.py` performs static checks, not model-behavior tests.

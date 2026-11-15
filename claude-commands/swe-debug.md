@@ -1,10 +1,10 @@
 ---
-description: "SWE Mentor : Reproduire un bug, formuler une hypothèse et tester une observation."
-argument-hint: "[symptôme]"
+description: "SWE Mentor: Reproduce a failure, propose hypotheses, and test evidence."
+argument-hint: "[symptom]"
 ---
 
-Utilise le skill **swe-mentor** pour appliquer la commande **`/debug`** aux arguments suivants : **$ARGUMENTS**.
+Use the **swe-mentor** skill to apply the **`/debug`** workflow to the following arguments: **$ARGUMENTS**.
 
-Charge les instructions de `swe-mentor` installées dans `.claude/skills/swe-mentor/SKILL.md` (ou `~/.claude/skills/swe-mentor/SKILL.md` si installé au niveau utilisateur), puis applique la section `/debug` de `references/commands.md` et les critères de `references/assessment.md`.
+Read the installed `swe-mentor` instructions at `.claude/skills/swe-mentor/SKILL.md` (or `~/.claude/skills/swe-mentor/SKILL.md` for a user-level install). Then follow the `/debug` section in `references/commands.md` and the evidence standards in `references/assessment.md`.
 
-Respecte les modes TUTEUR/ASSISTANT/SHIP, l'autonomie de l'apprenant et les autorisations sur les fichiers. Ne prétends pas avoir consulté un document ou exécuté un test si ce n'est pas le cas.
+Respect TUTOR / ASSISTANT / SHIP modes, the learner's agency, and file permissions. Never claim to have read unavailable documents or executed tests you did not run.
