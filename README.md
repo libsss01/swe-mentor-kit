@@ -9,9 +9,9 @@ A portable Socratic learning kit for **Claude Code**, **Codex**, and **ChatGPT**
 **MAP → DISCOVER → UNDERSTAND → DO → TEST → LOCK**
 
 Three modes:
-- **TUTEUR**: new concepts and focused labs; the learner writes the target code, AI offers graduated hints.
+- **TUTOR**: new concepts and focused labs; the learner writes the target code, AI offers graduated hints.
 - **ASSISTANT**: debugging, code reading, design discussions and reviews; inspect hypotheses and evidence.
-- **AGENTIQUE / SHIP**: explicit delegation for production, with diff, tests, and risk review. This does not establish that the learner mastered AI-generated code.
+- **AGENTIC / SHIP**: explicit delegation for production, with diff, tests, and risk review. This does not establish that the learner mastered AI-generated code.
 
 The goal is **Software Engineer** competency, not a particular framework, badge, or technology stack. The kit does not replace any existing roadmap.
 
@@ -28,7 +28,7 @@ python .\verify_kit.py
 .\install.ps1 -Scope User
 ```
 
-For only one project: ` .\install.ps1 -Scope Project -Target "C:\path\to\project" `.
+For a single project only: `.\install.ps1 -Scope Project -Target "C:\path\to\project"`.
 
 **Linux/macOS**
 
@@ -93,7 +93,7 @@ TESTS-MANUELS.md
 
 ## Safety, evaluation and limits
 
-- No implicit repo edits in TUTEUR, no auto-escalation to SHIP after a blockage.
+- No implicit repository edits in TUTOR mode, and no automatic escalation to SHIP after a blockage.
 - Verification = observed tests and inspectable artifacts; AI-generated changes alone do not demonstrate mastery.
 - The assistant should first invite a learner's own verdict and evidence, **without blocking a requested review**.
 - No mandatory 30-minute timer, no compulsory journal after every message, no needless quizzes.
