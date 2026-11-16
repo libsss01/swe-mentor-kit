@@ -1,4 +1,4 @@
-# SWE Mentor Kit — v0.3.0
+# SWE Mentor Kit — v0.4.0
 
 **Learn to reason, build, debug, test, review, and ship software with AI — without outsourcing the skill you want to develop.**
 
@@ -51,9 +51,9 @@ In Codex, select or invoke the bundled skill with `$swe-mentor` and describe you
 
 ### What gets installed?
 
-- `plugin.json`: portable Agent Plugins manifest.
+- `plugin.json`: portable Agent Plugins manifest, including OpenAI-specific interface metadata in `extensions.com.openai`.
 - `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`: Claude Code package identity and GitHub marketplace.
-- `.codex-plugin/plugin.json` and `.agents/plugins/marketplace.json`: Codex compatibility and local marketplace.
+- `.agents/plugins/marketplace.json`: Codex local marketplace. A redundant `.codex-plugin/plugin.json` is no longer needed.
 - `skills/swe-mentor/SKILL.md`: self-contained Socratic tutoring skill with references.
 - `commands/*.md`: 15 Claude Code plugin commands.
 
@@ -112,7 +112,7 @@ Manware-inspired commands are adapted, not reproduced verbatim. `/map`, `/lock`,
   plugin.json              # Codex compatibility metadata
 .agents/plugins/
   marketplace.json         # Codex marketplace catalog
-plugin.json                # Portable Agent Plugins manifest
+plugin.json                # Portable manifest + OpenAI interface metadata
 skills/swe-mentor/
   SKILL.md                 # Main pedagogical behavior
   references/
@@ -122,7 +122,7 @@ skills/swe-mentor/
 commands/                  # 15 Claude Code plugin commands
 templates/learning/        # Four log templates, not student data
 scripts/learning_logs.py   # Optional local init/append tool
-tests/                     # Local filesystem regression tests
+tests/                     # Local filesystem + multi-session persistence tests
 .github/workflows/test.yml # CI checks on push and pull request
 verify_plugin.py           # Plugin structure validation
 README.md
@@ -136,6 +136,15 @@ A locally installed Claude/Codex skill is **not automatically loaded** into Chat
 > Apply SWE Mentor: MAP → DISCOVER → UNDERSTAND → DO → TEST → LOCK. Tutor new concepts and labs; assist reviews and debugging; use agentic implementation only on explicit delegation. During /learn, dynamically use hints 0–6, debugging, testing, code review and retrieval without requiring slash commands. Treat '/hint', '/debug', '/retrieve', and '/ship' as textual intents, not built-in ChatGPT commands. Protect the learner's independent practice. Do not claim access to unavailable logs or tests. Store learning notes only in authorized project-local files and with consent.
 
 Example: `/learn I need to save and load my Java book catalog, and want to understand serialization while implementing it.`
+
+## Serialization learning scenario: three-session acceptance test
+
+1. **Session 1:** A learner building a Java library needs books to survive application restarts. `/learn` connects persistence requirements to serialization, lets the learner implement a small save/load round-trip, and adapts hints when `NotSerializableException` appears. It should **not** require separate `/debug` or `/hint` calls.
+2. **After practice:** The learner approves meaningful notes in four project-local logs. An actual demonstrated save/load test is recorded separately from an explanation merely given by AI.
+3. **Session 2:** A fresh session reads `context`, recalls the student's incorrect assumption about nested fields, and asks about class version compatibility *before* giving the saved answer.
+4. **Session 3:** A new settings-persistence problem tests transfer. Only inspected independent work supports a scoped mastery claim.
+
+Automated tests simulate project-local note creation, retrieval across separate sessions, record preservation and missing-history behavior. They **cannot prove the language model will adapt its teaching**; that requires a real-client multi-session evaluation.
 
 ## Manual behavior checks (also supported by automated structural and filesystem tests)
 

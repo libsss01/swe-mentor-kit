@@ -55,6 +55,42 @@ class LearningLogTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             module.append(self.project, "not-a-log", "Title", "Some content")
 
+    def test_read_context_does_not_create_files(self):
+        result = module.read_context(self.project)
+        self.assertFalse(result["available"])
+        self.assertEqual(result["logs"]["mistakes"], [])
+        self.assertFalse(module.log_dir(self.project).exists())
+
+    def test_resume_across_simulated_sessions(self):
+        # Session 1: the student learns persistence while building a Java library.
+        module.initialize(self.project)
+        module.append(self.project, "concepts", "Serialization", "- Learner's explanation: Encoding state for later recovery\n- Evidence: Save/load round-trip checked")
+        module.append(self.project, "mistakes", "NotSerializableException", "- Original mental model: Nested fields always serialize\n- Correct model: Graph members must also be serializable")
+        module.append(self.project, "questions", "Class changes", "- Current hypothesis: Old files always load\n- Status: open")
+        module.append(self.project, "review", "Compatibility prediction", "- Recall prompt: What happens to an old file after class shape changes?")
+
+        # Session 2: a new tutor process can retrieve real records, not conversation memory.
+        record = module.read_context(self.project)
+        self.assertTrue(record["available"])
+        self.assertIn("Nested fields always serialize", record["logs"]["mistakes"][-1]["text"])
+        self.assertIn("Class changes", record["logs"]["questions"][-1]["title"])
+        self.assertIn("Compatibility prediction", record["logs"]["review"][-1]["title"])
+
+        # No writes on retrieval, and a different project has no history.
+        prior = (module.log_dir(self.project) / "mistakes.md").read_bytes()
+        self.assertEqual(prior, (module.log_dir(self.project) / "mistakes.md").read_bytes())
+        other = Path(self.tmp.name) / "fresh-project"
+        other.mkdir()
+        self.assertFalse(module.read_context(other)["available"])
+
+    def test_read_context_returns_only_latest_entries(self):
+        module.initialize(self.project)
+        for i in range(5):
+            module.append(self.project, "questions", f"Question {i}", "Open")
+        result = module.read_context(self.project, limit=2)
+        self.assertEqual([e["title"].split(": ", 1)[1] for e in result["logs"]["questions"]],
+                         ["Question 3", "Question 4"])
+
     def test_logs_are_scoped_to_one_project(self):
         module.initialize(self.project)
         other = Path(self.tmp.name) / "different-project"

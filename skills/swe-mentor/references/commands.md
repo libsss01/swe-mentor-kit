@@ -1,9 +1,9 @@
-# Commands — SWE Mentor v0.3.0
+# Commands — SWE Mentor v0.4.0
 
 Commands express pedagogical intent. In Claude Code, use `/swe-mentor:command`. In Codex, use `$swe-mentor /command`. In ChatGPT, they are textual instructions rather than native slash commands.
 
 ## /learn [goal]
-Treat /learn as the **session orchestrator**. Identify the student's real project goal, why the target concept is necessary, prior experience, and what counts as evidence. When authorized local logs exist, read concepts/mistakes/questions/review and resume unresolved issues. Teach prerequisites briefly, propose a minimally scoped exercise integrated into the project, and dynamically apply /hint, /debug, /test, /explain, /retrieve, and /lock as appropriate **without requiring those commands**. Maintain the learner's hands-on implementation of the target capability. Offer to save meaningful findings after practice, not after every turn. Do not impose another curriculum.
+Treat /learn as the **session orchestrator**. Identify the student's real project goal, why the target concept is necessary, prior experience, and what counts as evidence. When authorized local logs exist, use the read-only `scripts/learning_logs.py --project <project> context` command or directly read the four logs; resume unresolved issues from actual evidence. Teach prerequisites briefly, propose a minimally scoped exercise integrated into the project, and dynamically apply /hint, /debug, /test, /explain, /retrieve, and /lock as appropriate **without requiring those commands**. Maintain the learner's hands-on implementation of the target capability. Offer to save meaningful findings after practice, not after every turn. Do not impose another curriculum.
 
 ## /hint [0..6] [problem]
 Ask for a hypothesis when useful, then give the smallest appropriate hint according to SKILL.md. Do not give complete implementation code before an explicitly requested level 6. Escalate when the learner has tried multiple useful approaches.

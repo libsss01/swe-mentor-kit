@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 from datetime import date
 from pathlib import Path
 
@@ -49,11 +50,52 @@ def append(project: Path, kind: str, title: str, content: str) -> Path:
     return path
 
 
+
+def read_context(project: Path, limit: int = 3) -> dict[str, object]:
+    """Read recent entries from four local logs without creating or editing files.
+
+    Markdown headings are entry boundaries. A missing file is treated as absent
+    history, never as a reason to invent content.
+    """
+    if not 1 <= limit <= 20:
+        raise ValueError("limit must be between 1 and 20")
+    folder = log_dir(project)
+    output: dict[str, object] = {
+        "project": str(project.resolve()),
+        "available": False,
+        "logs": {},
+    }
+    logs: dict[str, list[dict[str, str]]] = {}
+    for kind in KINDS:
+        file = folder / f"{kind}.md"
+        entries: list[dict[str, str]] = []
+        if file.is_file():
+            output["available"] = True
+            text = file.read_text(encoding="utf-8")
+            current_title = None
+            buffer: list[str] = []
+            for line in text.splitlines():
+                if line.startswith("## "):
+                    if current_title is not None:
+                        entries.append({"title": current_title, "text": "\n".join(buffer).strip()})
+                    current_title = line[3:].strip()
+                    buffer = []
+                elif current_title is not None:
+                    buffer.append(line)
+            if current_title is not None:
+                entries.append({"title": current_title, "text": "\n".join(buffer).strip()})
+        logs[kind] = entries[-limit:]
+    output["logs"] = logs
+    return output
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Manage project-local learning logs with explicit user intent")
     parser.add_argument("--project", type=Path, default=Path.cwd())
     sub = parser.add_subparsers(dest="action", required=True)
     sub.add_parser("init", help="Create missing logs, never overwriting existing ones")
+    view = sub.add_parser("context", help="Read recent local notes without changing the project")
+    view.add_argument("--limit", type=int, default=3)
     add = sub.add_parser("append", help="Append one user-approved learning note")
     add.add_argument("kind", choices=KINDS)
     add.add_argument("--title", required=True)
@@ -63,6 +105,8 @@ def main() -> None:
         created = initialize(args.project)
         print(f"Initialized {len(created)} new logs at {log_dir(args.project)}")
         print("Consider adding .swe-mentor/ to .gitignore (with the project owner's permission).")
+    elif args.action == "context":
+        print(json.dumps(read_context(args.project, args.limit), indent=2, ensure_ascii=False))
     else:
         path = append(args.project, args.kind, args.title, args.text)
         print(f"Appended to {path}")
