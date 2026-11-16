@@ -47,7 +47,7 @@ codex plugin add swe-mentor@swe-mentor
 
 In Codex, select or invoke the bundled skill with `$swe-mentor` and describe your workflow, for example: `$swe-mentor /debug My deletion test fails after a hash collision`.
 
-> Availability of marketplace installation depends on your local Codex version. If `codex plugin add` is unsupported, use your desktop Plugins Directory or the standalone installer below. This repository is not yet listed in any universal public plugin directory.
+> Availability of marketplace installation depends on your local Codex version. If `codex plugin add` is unsupported, consult the Codex plugin support for your client version. Do not assume marketplace installation is supported. This repository is not yet listed in any universal public plugin directory.
 
 ### What gets installed?
 
@@ -63,41 +63,22 @@ In Codex, select or invoke the bundled skill with `$swe-mentor` and describe you
 
 A plugin is an installable bundle, a skill defines reusable instructions, and a marketplace indexes bundles. Start by reading `skills/swe-mentor/SKILL.md`, then `.claude-plugin/plugin.json`, `plugin.json`, and the two marketplace catalogs. To contribute: fork, edit a workflow, run static checks, validate the Claude plugin locally, then submit a pull request.
 
-## Standalone/manual install (legacy)
+## Usage
 
-Clone this repository, then run from its root:
+**Claude Code:** after installing the plugin, try `/swe-mentor:learn`, `/swe-mentor:hint 2`, `/swe-mentor:debug`, `/swe-mentor:code-review`, `/swe-mentor:retrieve`, or `/swe-mentor:ship`. The 15 commands live in `commands/` and are namespaced by the plugin.
 
-**Windows PowerShell**
+**Codex:** invoke the included skill using `$swe-mentor /debug My Java deletion test fails after a collision`, or select it in a supported skill picker.
 
-```powershell
-git clone https://github.com/libsss01/swe-mentor-kit.git
-cd swe-mentor-kit
-python .\verify_kit.py
-.\install.ps1 -Scope User
-```
+**ChatGPT:** this repository does not install a native ChatGPT plugin. Use [CHATGPT-USAGE.md](CHATGPT-USAGE.md) for a prompt-based adaptation.
 
-For a single project only: `.\install.ps1 -Scope Project -Target "C:\path\to\project"`.
-
-**Linux/macOS**
+### Local validation
 
 ```bash
-git clone https://github.com/libsss01/swe-mentor-kit.git
-cd swe-mentor-kit
-python3 verify_kit.py
-bash install.sh user
+python3 verify_plugin.py
+claude plugin validate .
 ```
 
-Or `bash install.sh project /path/to/project`.
-
-**Install is non-destructive:** existing target files are skipped, not overwritten. Reinstall after an update only after examining the diff and backing up older installed files.
-
-## Use
-
-**Claude Code:** `/swe-learn`, `/swe-hint 2`, `/swe-debug`, `/swe-code-review`, `/swe-retrieve`, `/swe-ship`, etc. All 15 commands use the `/swe-` prefix to avoid name collisions.
-
-**Codex:** `$swe-mentor /debug My Java test fails after deletion` or select the skill with `/skills` where available.
-
-**ChatGPT:** use the guidance in [CHATGPT-USAGE.md](CHATGPT-USAGE.md). Text commands in chat are not guaranteed native slash commands.
+The Python script checks the repository structure; the second command needs Claude Code. Actual installation and agent behavior still require local tests.
 
 ## Complete command set
 
@@ -124,19 +105,26 @@ Manware-inspired commands are adapted, not reproduced verbatim. `/map`, `/lock`,
 ## Repository structure
 
 ```text
-core/
-  SKILL.md
+.claude-plugin/
+  plugin.json            # Claude Code plugin metadata
+  marketplace.json       # Claude Code marketplace catalog
+.codex-plugin/
+  plugin.json            # Codex plugin metadata
+.agents/plugins/
+  marketplace.json       # Codex marketplace catalog
+plugin.json              # Portable plugin manifest
+skills/swe-mentor/
+  SKILL.md               # Main teaching behavior
   references/
-    commands.md
-    assessment.md
-claude-commands/        # 15 /swe-* wrappers
+    commands.md          # Workflows for all 15 commands
+    assessment.md        # Evidence and learning validation
+commands/                # 15 Claude Code plugin commands
 examples/
   learning-log-template.md
-install.ps1             # Windows installer
-install.sh              # Linux/macOS installer
-verify_kit.py           # static validation
+verify_plugin.py         # Static package checks
 CHATGPT-USAGE.md
 TESTS-MANUELS.md
+LICENSE
 ```
 
 ## Safety, evaluation and limits
