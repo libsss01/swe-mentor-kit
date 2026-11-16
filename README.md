@@ -106,24 +106,26 @@ Manware-inspired commands are adapted, not reproduced verbatim. `/map`, `/lock`,
 
 ```text
 .claude-plugin/
-  plugin.json            # Claude Code plugin metadata
-  marketplace.json       # Claude Code marketplace catalog
+  plugin.json              # Claude Code plugin metadata
+  marketplace.json         # Claude Code marketplace catalog
 .codex-plugin/
-  plugin.json            # Codex plugin metadata
+  plugin.json              # Codex compatibility metadata
 .agents/plugins/
-  marketplace.json       # Codex marketplace catalog
-plugin.json              # Portable plugin manifest
+  marketplace.json         # Codex marketplace catalog
+plugin.json                # Portable Agent Plugins manifest
 skills/swe-mentor/
-  SKILL.md               # Main teaching behavior
+  SKILL.md                 # Main pedagogical behavior
   references/
-    commands.md          # Workflows for all 15 commands
-    assessment.md        # Evidence and learning validation
-commands/                # 15 Claude Code plugin commands
-examples/
-  learning-log-template.md
-verify_plugin.py         # Static package checks
-README.md (ChatGPT guidance)
-README.md (behavior checks)
+    commands.md            # Workflows for all 15 commands
+    assessment.md          # Evidence standards
+    learning-logs.md       # Persistent learning log protocol
+commands/                  # 15 Claude Code plugin commands
+templates/learning/        # Four log templates, not student data
+scripts/learning_logs.py   # Optional local init/append tool
+tests/                     # Local filesystem regression tests
+.github/workflows/test.yml # CI checks on push and pull request
+verify_plugin.py           # Plugin structure validation
+README.md
 LICENSE
 ```
 
