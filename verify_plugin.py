@@ -10,7 +10,7 @@ for name in ("plugin.json", ".claude-plugin/plugin.json", ".claude-plugin/market
              ".codex-plugin/plugin.json", ".agents/plugins/marketplace.json"):
     data = json.loads((ROOT/name).read_text(encoding="utf-8"))
     assert isinstance(data, dict) and data["name"] == "swe-mentor", name
-assert json.loads((ROOT/"plugin.json").read_text())["version"] == "0.2.0"
+assert json.loads((ROOT/"plugin.json").read_text())["version"] == "0.3.0"
 skill = (ROOT/"skills/swe-mentor/SKILL.md").read_text(encoding="utf-8")
 assert skill.startswith("---\nname: swe-mentor\n")
 protocol = (ROOT/"skills/swe-mentor/references/commands.md").read_text(encoding="utf-8")
@@ -24,4 +24,7 @@ claude=json.loads((ROOT/".claude-plugin/marketplace.json").read_text())
 codex=json.loads((ROOT/".agents/plugins/marketplace.json").read_text())
 assert claude["plugins"][0]["source"] == "./"
 assert codex["plugins"][0]["source"]["path"] == "./"
-print("PASS: portable manifest, Claude/Codex catalogs, one skill, two references, 15 commands.")
+assert (ROOT/"skills/swe-mentor/references/learning-logs.md").exists()
+assert len(list((ROOT/"templates/learning").glob("*.md"))) == 4
+assert (ROOT/"scripts/learning_logs.py").exists()
+print("PASS: plugin manifests, 15 commands, learning log protocol, 4 templates and helper.")

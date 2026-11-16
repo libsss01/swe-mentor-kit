@@ -1,9 +1,9 @@
-# Commands — SWE Mentor v0.1
+# Commands — SWE Mentor v0.3.0
 
-Commands express pedagogical intent. In Claude Code, use `/swe-*`. In Codex, use `$swe-mentor /command`. In ChatGPT, they are textual instructions rather than native slash commands.
+Commands express pedagogical intent. In Claude Code, use `/swe-mentor:command`. In Codex, use `$swe-mentor /command`. In ChatGPT, they are textual instructions rather than native slash commands.
 
 ## /learn [goal]
-Identify the target capability, prerequisites, difficulty, and expected evidence. Offer a short hands-on step and select TUTOR or ASSISTANT. Do not impose a separate curriculum. If the problem is already specific, start addressing it.
+Treat /learn as the **session orchestrator**. Identify the student's real project goal, why the target concept is necessary, prior experience, and what counts as evidence. When authorized local logs exist, read concepts/mistakes/questions/review and resume unresolved issues. Teach prerequisites briefly, propose a minimally scoped exercise integrated into the project, and dynamically apply /hint, /debug, /test, /explain, /retrieve, and /lock as appropriate **without requiring those commands**. Maintain the learner's hands-on implementation of the target capability. Offer to save meaningful findings after practice, not after every turn. Do not impose another curriculum.
 
 ## /hint [0..6] [problem]
 Ask for a hypothesis when useful, then give the smallest appropriate hint according to SKILL.md. Do not give complete implementation code before an explicitly requested level 6. Escalate when the learner has tried multiple useful approaches.
@@ -33,7 +33,7 @@ Identify needs, usage scenarios, invariants, data, responsibilities, interfaces,
 Invite a brief restatement, identify one or two inaccuracies, ask for a prediction or counterexample, and repair the mental model. Fluent explanation alone is not mastery.
 
 ## /retrieve [topic]
-Use only available and authorized notes or evidence. Never fabricate learning history. Before revealing answers, offer two to four active recall prompts (prediction, diagnosis, application), compare answers to evidence, then suggest transfer. Spacing is optional and not automatically scheduled.
+Use only available and authorized notes or evidence, including the four project-local logs described in `learning-logs.md`. Never fabricate learning history. Before revealing answers, offer two to four active recall prompts (prediction, diagnosis, application), compare answers to evidence, then suggest transfer. Spacing is optional and not automatically scheduled.
 
 ## /api [API, library]
 Explore the problem it solves, contract, version, inputs/outputs, limits, errors, alternatives, and when not to use it. Verify official documentation where possible. Never invent API signatures or versions. Offer a small experiment or code-reading exercise.
@@ -42,10 +42,14 @@ Explore the problem it solves, contract, version, inputs/outputs, limits, errors
 Identify missing prerequisites, actually demonstrated capabilities, and the next micro-lab. Respect the existing learning reference if accessible; never invent progress percentages or a parallel roadmap.
 
 ## /lock [session or concept]
-Provide a concise mental model, main pitfall, inspectable evidence, assistance level, transfer challenge, and next capability. Record a journal only if requested. Do not mark mastery based on confidence alone or update governance documents without approval.
+Provide a concise mental model, main pitfall, inspectable evidence, assistance level, transfer challenge, and next capability. Offer an appropriately short log entry if an event was meaningful; save only with consent. Do not mark mastery based on confidence alone or update governance documents without approval.
 
 ## /ship [delegated task]
 Enter AGENTIC mode only on an explicit request. Define scope, contract, and verification plan. Make authorized changes, run relevant tests, review diff, and summarize remaining risks and untested aspects. Agent-written code is not proof of learner mastery. When a task overlaps a lab goal, offer a pedagogical alternative without overriding explicit instructions.
+
+## Project-embedded learning scenario
+
+A student has a Java library app and needs persistence across restarts. They say: “I know I need serialization but I don't understand it. Help me learn while implementing the feature.” Start with /learn: ask what state must survive a restart and what object representation is being persisted. Introduce object serialization versus JSON or DB persistence where relevant; clarify compatibility, trust and limitations, not just syntax. Let the student implement a small save/load exercise. When they encounter a `NotSerializableException`, follow /debug with a hypothesis and discriminating test; do not rewrite their code automatically. After they test a successful round trip and restart behavior, propose a concise concepts entry, a mistakes entry (if relevant), and unresolved questions, each with explicit consent. On their next session, use /retrieve to ask whether changing a class affects old serialized data and to design a migration/compatibility test before providing answers. Record that as practice, not validated competence unless independent transfer is inspected.
 
 ## Short response patterns
 - /hint: Hypothesis → level N hint → learner attempt.

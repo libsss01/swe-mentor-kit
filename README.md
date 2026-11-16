@@ -1,4 +1,4 @@
-# SWE Mentor Kit — v0.2.0
+# SWE Mentor Kit — v0.3.0
 
 **Learn to reason, build, debug, test, review, and ship software with AI — without outsourcing the skill you want to develop.**
 
@@ -69,7 +69,7 @@ A plugin is an installable bundle, a skill defines reusable instructions, and a 
 
 **Codex:** invoke the included skill using `$swe-mentor /debug My Java deletion test fails after a collision`, or select it in a supported skill picker.
 
-**ChatGPT:** this repository does not install a native ChatGPT plugin. Use [CHATGPT-USAGE.md](CHATGPT-USAGE.md) for a prompt-based adaptation.
+**ChatGPT:** this repository does not install a native ChatGPT plugin. Follow the prompt-based instructions below.
 
 ### Local validation
 
@@ -78,7 +78,7 @@ python3 verify_plugin.py
 claude plugin validate .
 ```
 
-The Python script checks the repository structure; the second command needs Claude Code. Actual installation and agent behavior still require local tests.
+The Python script checks the repository structure and bundled learning-log layout; the second command needs Claude Code. Actual installation and agent behavior still require local tests.
 
 ## Complete command set
 
@@ -122,10 +122,33 @@ commands/                # 15 Claude Code plugin commands
 examples/
   learning-log-template.md
 verify_plugin.py         # Static package checks
-CHATGPT-USAGE.md
-TESTS-MANUELS.md
+README.md (ChatGPT guidance)
+README.md (behavior checks)
 LICENSE
 ```
+
+## Using the method in ChatGPT (prompt-based, not a native plugin)
+
+A locally installed Claude/Codex skill is **not automatically loaded** into ChatGPT. Copy this brief guidance into a ChatGPT conversation and attach the skill files if the conversation does not already contain the instructions:
+
+> Apply SWE Mentor: MAP → DISCOVER → UNDERSTAND → DO → TEST → LOCK. Tutor new concepts and labs; assist reviews and debugging; use agentic implementation only on explicit delegation. During /learn, dynamically use hints 0–6, debugging, testing, code review and retrieval without requiring slash commands. Treat '/hint', '/debug', '/retrieve', and '/ship' as textual intents, not built-in ChatGPT commands. Protect the learner's independent practice. Do not claim access to unavailable logs or tests. Store learning notes only in authorized project-local files and with consent.
+
+Example: `/learn I need to save and load my Java book catalog, and want to understand serialization while implementing it.`
+
+## Manual behavior checks (also supported by automated structural and filesystem tests)
+
+| Scenario | Expected |
+|---|---|
+| /learn: Java project needs serialization | A project-specific path from concept to micro-lab, no demand to call /hint |
+| Student hits NotSerializableException | Hypothesis, discriminating observation, no unrequested rewrite |
+| /hint 0 | Question to elicit a prediction, not complete code |
+| Explicit /hint 6 | Explained solution and transfer challenge |
+| Session starts with approved existing logs | Retrieval from one real prior difficulty, not invented memory |
+| No project logs / declined logging | Session still works; no files created |
+| /lock after meaningful learning | Suggest concise notes; write only with consent |
+| /ship explicitly delegated production task | Authorized implementation with tests/diff/risks; no mastery claim |
+
+**Automated tests**: run `python3 verify_plugin.py` and `python3 -m unittest discover -s tests -v`. GitHub Actions runs both on pushes and pull requests. These tests do **not** test model responses or prove Claude/Codex compatibility; those require real-client evaluation.
 
 ## Safety, evaluation and limits
 
