@@ -2,7 +2,7 @@
 
 **Learn to reason, build, debug, test, review, and ship software with AI — without outsourcing the skill you want to develop.**
 
-An installable, portable Socratic learning plugin for **Claude Code**, **Codex**, and **ChatGPT**, inspired by [Manware's AI Learning Toolkit](https://github.com/i-am-manware/Manware-s-AI-Learning-Toolkit), adapted for the Software Engineering & Computer Science learning path.
+An installable, portable Socratic learning plugin for **Claude Code** and **Codex**, with a separate prompt-based guide for **ChatGPT**, inspired by [Manware's AI Learning Toolkit](https://github.com/i-am-manware/Manware-s-AI-Learning-Toolkit), adapted for the Software Engineering & Computer Science learning path.
 
 ## Pedagogical protocol
 
@@ -28,7 +28,7 @@ Run these inside a Claude Code session, one at a time:
 /plugin install swe-mentor@swe-mentor
 ```
 
-Restart Claude Code and try `/swe-mentor:learn`, `/swe-mentor:hint 1`, `/swe-mentor:debug`, or `/swe-mentor:retrieve`. The plugin ships 15 namespaced commands. These commands are plugin commands, distinct from the legacy standalone `/swe-*` files.
+Restart Claude Code and try `/swe-mentor:learn`, `/swe-mentor:hint 1`, `/swe-mentor:debug`, or `/swe-mentor:retrieve`. The plugin ships 15 namespaced commands.
 
 Optional local validation before installation:
 
@@ -61,7 +61,7 @@ In Codex, select or invoke the bundled skill with `$swe-mentor` and describe you
 
 ### Learn by building a plugin
 
-A plugin is an installable bundle, a skill defines reusable instructions, and a marketplace indexes bundles. Start by reading `skills/swe-mentor/SKILL.md`, then `.claude-plugin/plugin.json`, `plugin.json`, and the two marketplace catalogs. To contribute: fork, edit a workflow, run static checks, validate the Claude plugin locally, then submit a pull request.
+A plugin is an installable bundle, a skill defines reusable instructions, and a marketplace indexes bundles. Start by reading `skills/swe-mentor/SKILL.md`, then `.claude-plugin/plugin.json`, `plugin.json`, and the two marketplace catalogs. To contribute: fork, edit a workflow, run `python3 verify_plugin.py`, validate the Claude plugin locally, then submit a pull request.
 
 ## Usage
 
